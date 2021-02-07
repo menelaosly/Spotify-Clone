@@ -1,0 +1,129 @@
+* {
+  box-sizing: border-box;
+}
+
+// V A R I A B L E S
+
+// C O L O R S
+$primary: #1db954;
+$dark: #191414;
+$grey: #272727;
+
+// V A L U E S
+$text-h6: 0.7em;
+$playlist-height: 100px;
+
+.App {
+  display: grid;
+  grid-template-rows: calc(100vh - #{$playlist-height}) $playlist-height;
+  grid-template-columns: 200px calc(100vw - 200px);
+  grid-template-areas:
+    "nav main"
+    "player player";
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: $dark;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.03em;
+  font-family: Helvetica, sans-serif;
+}
+
+.main {
+  grid-area: main;
+  height: calc(100vh - #{$playlist-height});
+  background: linear-gradient(rgb(76, 76, 76) 10%, $dark 100%);
+}
+
+.side-nav {
+  grid-area: nav;
+  padding: 50px 15px 0 15px;
+  flex-basis: 200px;
+  height: calc(100vh - #{$playlist-height});
+  position: relative;
+  .nav-item {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    &.active {
+      color: white;
+      font-weight: 600;
+      &::before {
+        content: "";
+        width: 5px;
+        height: 100%;
+        left: -15px;
+        background: $primary;
+        position: absolute;
+      }
+    }
+    svg {
+      margin-right: 15px;
+      font-size: 1.2em;
+    }
+    &:hover {
+      color: white;
+    }
+
+    &.bottom {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      background: $dark;
+      width: 100%;
+      padding: 15px 30px;
+      font-size: 0.9em;
+      box-shadow: -2px -1px 1px 1px $grey;
+      svg {
+        border: 2px solid white;
+        padding: 2px 4px;
+        border-radius: 50%;
+        font-size: 1.7em !important;
+      }
+    }
+  }
+  .scroll {
+    height: calc(100% - 170px);
+    overflow: auto;
+    padding-bottom: 20px;
+    margin-top: 20px;
+  }
+  .list-item {
+    padding: 5px 0;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.728);
+    cursor: pointer;
+    &:hover {
+      color: white;
+    }
+  }
+  h6 {
+    font-weight: 100;
+    margin-bottom: 10px;
+    font-size: $text-h6;
+  }
+}
+
+.player {
+  grid-area: player;
+  background: $grey;
+  height: 100%;
+  width: 100%;
+  flex-basis: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 0.8em;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(30, 30, 30);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(68, 68, 68);
+}
