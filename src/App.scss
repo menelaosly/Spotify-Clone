@@ -1,22 +1,13 @@
+@import "variables.scss";
+
 * {
   box-sizing: border-box;
 }
 
-// V A R I A B L E S
-
-// C O L O R S
-$primary: #1db954;
-$dark: #191414;
-$grey: #272727;
-
-// V A L U E S
-$text-h6: 0.7em;
-$playlist-height: 100px;
-
 .App {
   display: grid;
   grid-template-rows: calc(100vh - #{$playlist-height}) $playlist-height;
-  grid-template-columns: 200px calc(100vw - 200px);
+  grid-template-columns: $nav-width calc(100vw - #{$nav-width});
   grid-template-areas:
     "nav main"
     "player player";
@@ -27,84 +18,59 @@ $playlist-height: 100px;
   background: $dark;
   color: rgba(255, 255, 255, 0.8);
   letter-spacing: 0.03em;
-  font-family: Helvetica, sans-serif;
 }
 
 .main {
   grid-area: main;
   height: calc(100vh - #{$playlist-height});
+  max-height: calc(100vh - #{$playlist-height});
+  overflow-y: auto;
   background: linear-gradient(rgb(76, 76, 76) 10%, $dark 100%);
-}
-
-.side-nav {
-  grid-area: nav;
-  padding: 50px 15px 0 15px;
-  flex-basis: 200px;
-  height: calc(100vh - #{$playlist-height});
+  padding: 50px 30px 30px 30px;
   position: relative;
-  .nav-item {
-    padding: 10px 0;
-    display: flex;
-    align-items: center;
-    position: relative;
-    cursor: pointer;
-    &.active {
-      color: white;
-      font-weight: 600;
-      &::before {
-        content: "";
-        width: 5px;
-        height: 100%;
-        left: -15px;
-        background: $primary;
-        position: absolute;
-      }
-    }
-    svg {
-      margin-right: 15px;
-      font-size: 1.2em;
-    }
-    &:hover {
-      color: white;
-    }
-
-    &.bottom {
-      bottom: 0;
-      left: 0;
-      position: absolute;
+  .heading {
+    position: sticky;
+    top: 0;
+    margin: 0 -30px;
+    padding: 0 30px 20px 30px;
+    transition: background 0.1s ease-in-out;
+    &.scrolled {
       background: $dark;
-      width: 100%;
-      padding: 15px 30px;
-      font-size: 0.9em;
-      box-shadow: -2px -1px 1px 1px $grey;
-      svg {
-        border: 2px solid white;
-        padding: 2px 4px;
-        border-radius: 50%;
-        font-size: 1.7em !important;
+      h1 {
+        font-size: 1.4em;
+        animation: toTop 0.3s ease;
       }
     }
-  }
-  .scroll {
-    height: calc(100% - 170px);
-    overflow: auto;
-    padding-bottom: 20px;
-    margin-top: 20px;
-  }
-  .list-item {
-    padding: 5px 0;
-    font-size: 0.8em;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.728);
-    cursor: pointer;
-    &:hover {
+    h1 {
       color: white;
+      // transition: all .1s ease-in-out;
     }
   }
-  h6 {
-    font-weight: 100;
-    margin-bottom: 10px;
-    font-size: $text-h6;
+
+  .tabs {
+    display: flex;
+    .tab {
+      margin-right: 20px;
+      position: relative;
+      color: rgba(255, 255, 255, 0.7) !important;
+      text-decoration: none;
+      font-size: 0.8em;
+      font-weight: 700;
+      white-space: nowrap;
+      &--active {
+        color: white !important;
+        &::before {
+          content: "";
+          position: absolute;
+          width: 20px;
+          height: 2px;
+          left: 50%;
+          bottom: -5px;
+          transform: translateX(-50%);
+          background: $primary;
+        }
+      }
+    }
   }
 }
 
@@ -114,6 +80,11 @@ $playlist-height: 100px;
   height: 100%;
   width: 100%;
   flex-basis: 100%;
+}
+
+.empty {
+  height: 100vh;
+  margin-top: 50px;
 }
 
 ::-webkit-scrollbar {
@@ -126,4 +97,17 @@ $playlist-height: 100px;
 
 ::-webkit-scrollbar-thumb {
   background-color: rgb(68, 68, 68);
+}
+
+@keyframes toTop {
+  0% {
+    transform: translateY(50px);
+    visibility: hidden;
+  }
+  50% {
+    visibility: visible;
+  }
+  100% {
+    transform: translateY(0);
+  }
 }

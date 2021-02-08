@@ -1,0 +1,85 @@
+@import "../../variables.scss";
+.side-nav {
+    grid-area: nav;
+    padding: 50px 15px 0 15px;
+    flex-basis: $nav-width;
+    height: calc(100vh - #{$playlist-height});
+    position: relative;
+    .nav-item {
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.7) !important;
+        text-decoration: none !important;
+        .material-icons {
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+        &:hover {
+            color: white !important;
+        }
+
+        &.bottom {
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            background: $dark;
+            width: 100%;
+            padding: 15px 30px;
+            font-size: 0.9em;
+            box-shadow: -2px -1px 1px 1px $grey;
+            .material-icons {
+                margin-right: 10px;
+                font-size: 1.7em;
+            }
+        }
+    }
+    .scroll {
+        max-height: calc(100% - 195px);
+        overflow-y: auto;
+        overflow-x: visible;
+        padding-bottom: 20px;
+        width: calc(100% + 30px);
+        margin: 0 -15px;
+        margin-top: 20px;
+        .scroll-content {
+            width: 100%;
+            height: 100%;
+            padding: 0 15px;
+        }
+    }
+    .list-item {
+        padding: 5px 0;
+        font-size: 0.8em;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.728);
+        cursor: pointer;
+        text-decoration: none;
+        display: block;
+        position: relative;
+        &:hover {
+            color: white;
+        }
+    }
+    h6 {
+        font-weight: 100;
+        margin-bottom: 10px;
+        font-size: $text-h6;
+    }
+
+    .active {
+        color: white !important;
+        font-weight: 600;
+        &::before {
+            content: "";
+            width: 5px;
+            height: 100%;
+            left: -15px;
+            top: 0;
+            background: $primary;
+            position: absolute;
+        }
+    }
+}

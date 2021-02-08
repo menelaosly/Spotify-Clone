@@ -1,0 +1,42 @@
+@import "../../variables.scss";
+.header {
+  width: calc(100% - #{$nav-width});
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: $nav-width;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+  &.scrolled {
+    background: $dark;
+  }
+  input {
+    background: white;
+    border-radius: 20px;
+    width: 200px;
+    padding: 5px;
+    outline: 0;
+    margin-left: 10px;
+    margin-right: auto;
+  }
+  a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    &:hover {
+      color: white;
+    }
+  }
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+    img {
+      object-fit: cover;
+      height: 100%;
+    }
+  }
+}
