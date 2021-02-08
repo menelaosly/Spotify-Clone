@@ -1,0 +1,57 @@
+@import "../../variables.scss";
+
+$card-width: 250px;
+.item-card {
+    background: transparent !important;
+    max-width: $card-width;
+    position: relative;
+    &--image {
+        width: 100%;
+        height: $card-width;
+    }
+
+    &:hover .item-card--overlay {
+        visibility: visible;
+    }
+    h5 {
+        color: white;
+        margin: 5px 0;
+    }
+
+    p {
+        font-size: 0.8em;
+    }
+
+    &--followers {
+        letter-spacing: 0.2em;
+        font-size: 1em;
+    }
+
+    &--overlay {
+        visibility: hidden;
+        width: $card-width;
+        height: $card-width;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        z-index: 3;
+        background: rgba($dark, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .MuiSvgIcon-root {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            &:hover {
+                color: white;
+            }
+            &:nth-child(2) {
+                width: 50px;
+                height: 50px;
+                margin: 0 20px;
+            }
+        }
+    }
+}

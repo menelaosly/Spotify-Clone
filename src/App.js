@@ -10,14 +10,12 @@ import Radio from "./Views/Radio";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
+
 library.add(fas, far);
-const main = createRef();
 const App = () => {
-  const textInput = createRef();
   const handleScrolling = (ev) => {
     const header = ev.target.children[0];
     const heading = ev.target.children[1];
-    console.log(ev.target.scrollTop);
     if (ev.target.scrollTop > 15) {
       if (!heading.classList.contains("scrolled")) {
         heading.classList.add("scrolled");
@@ -32,7 +30,7 @@ const App = () => {
   return (
     <BrowserRouter location="/home">
       <div className="App">
-        <div className="main" ref={main} onScroll={handleScrolling}>
+        <div className="main" onScroll={handleScrolling}>
           <Header />
           <Route path="/home">
             <Home />
